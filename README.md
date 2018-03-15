@@ -1,5 +1,5 @@
 # SoftUni-Algorithms-2018
-Algorithms course at SoftUni, 2018
+**Algorithms course at SoftUni, 2018**</br>
 https://softuni.bg/trainings/1907/algorithms-march-2018
 
 Recursion, Sorting and Searching Algorithms</br>
