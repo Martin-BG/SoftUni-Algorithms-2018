@@ -8,13 +8,12 @@ import java.util.*;
 public class Pr07PathsInLabyrinth {
 
     private static final char[][] LABYRINTH = readLabyrinth();
-    private static final Cell EXIT_CELL = findExitCell();
     private static final char BLOCKED_SYMBOL = '*';
     private static final Set<Cell> BLOCKED_CELLS = readBlockedCells();
     private static final char EXIT_SYMBOL = 'e';
-
-    private static List<String> path = new LinkedList<>();
-    private static Set<Cell> visied = new HashSet<>();
+    private static final Cell EXIT_CELL = findExitCell();
+    private static final List<String> path = new LinkedList<>();
+    private static final Set<Cell> visited = new HashSet<>();
 
     private static Set<Cell> readBlockedCells() {
         Set<Cell> cells = new HashSet<>();
@@ -35,35 +34,39 @@ public class Pr07PathsInLabyrinth {
     }
 
     private static void findPath(Cell current, String direction) {
-        if (!inBounds(current)) {
+        if (current == null) {
             return;
         }
 
         path.add(direction);
 
-        if (current == EXIT_CELL) {
+        if (current.equals(EXIT_CELL)) {
             System.out.println(String.join("", path));
-        } else if (!visied.contains(current) && !BLOCKED_CELLS.contains(current)) {
+        } else if (!visited.contains(current) && !BLOCKED_CELLS.contains(current)) {
 
-            visied.add(current);
-            findPath(new Cell(current.row, current.col + 1), "R");
-            findPath(new Cell(current.row + 1, current.col), "D");
-            findPath(new Cell(current.row, current.col - 1), "L");
-            findPath(new Cell(current.row - 1, current.col), "U");
-            visied.remove(current);
+            visited.add(current);
+            findPath(getCell(current.row, current.col + 1), "R");
+            findPath(getCell(current.row + 1, current.col), "D");
+            findPath(getCell(current.row, current.col - 1), "L");
+            findPath(getCell(current.row - 1, current.col), "U");
+            visited.remove(current);
         }
 
         path.remove(path.size() - 1);
     }
 
-    private static boolean inBounds(Cell cell) {
-        return cell.row < LABYRINTH.length && cell.col < LABYRINTH[cell.row].length;
+    private static Cell getCell(int row, int col) {
+        if (row < 0 || col < 0 || row >= LABYRINTH.length || col >= LABYRINTH[row].length) {
+            return null;
+        }
+
+        return new Cell(row, col);
     }
 
     private static Cell findExitCell() {
         for (int row = 0; row < LABYRINTH.length; row++) {
             for (int col = 0; col < LABYRINTH[row].length; col++) {
-                if (LABYRINTH[row][col] == 'e') {
+                if (LABYRINTH[row][col] == EXIT_SYMBOL) {
                     return new Cell(row, col);
                 }
             }
@@ -92,8 +95,8 @@ public class Pr07PathsInLabyrinth {
     }
 
     private static class Cell implements Comparable<Cell> {
-        int row;
-        int col;
+        final int row;
+        final int col;
 
         Cell(int row, int col) {
             this.row = row;
