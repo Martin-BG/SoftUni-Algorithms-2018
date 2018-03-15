@@ -7,13 +7,15 @@ import java.util.*;
 
 public class Pr07PathsInLabyrinth {
 
-    private static final char[][] LABYRINTH = readLabyrinth();
-    private static final char BLOCKED_SYMBOL = '*';
-    private static final Set<Cell> BLOCKED_CELLS = readBlockedCells();
     private static final char EXIT_SYMBOL = 'e';
+    private static final char BLOCKED_SYMBOL = '*';
+
+    private static final char[][] LABYRINTH = readLabyrinth();
+    private static final Set<Cell> BLOCKED_CELLS = readBlockedCells();
     private static final Cell EXIT_CELL = findExitCell();
-    private static final List<String> path = new LinkedList<>();
-    private static final Set<Cell> visited = new HashSet<>();
+
+    private static final List<String> PATH = new LinkedList<>();
+    private static final Set<Cell> VISITED = new HashSet<>();
 
     private static Set<Cell> readBlockedCells() {
         Set<Cell> cells = new HashSet<>();
@@ -38,21 +40,21 @@ public class Pr07PathsInLabyrinth {
             return;
         }
 
-        path.add(direction);
+        PATH.add(direction);
 
         if (current.equals(EXIT_CELL)) {
-            System.out.println(String.join("", path));
-        } else if (!visited.contains(current) && !BLOCKED_CELLS.contains(current)) {
+            System.out.println(String.join("", PATH));
+        } else if (!VISITED.contains(current) && !BLOCKED_CELLS.contains(current)) {
 
-            visited.add(current);
+            VISITED.add(current);
             findPath(getCell(current.row, current.col + 1), "R");
             findPath(getCell(current.row + 1, current.col), "D");
             findPath(getCell(current.row, current.col - 1), "L");
             findPath(getCell(current.row - 1, current.col), "U");
-            visited.remove(current);
+            VISITED.remove(current);
         }
 
-        path.remove(path.size() - 1);
+        PATH.remove(PATH.size() - 1);
     }
 
     private static Cell getCell(int row, int col) {
