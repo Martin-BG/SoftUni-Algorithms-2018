@@ -9,26 +9,23 @@ public class Pr07PathsInLabyrinth {
 
     private static final char EXIT_SYMBOL = 'e';
     private static final char BLOCKED_SYMBOL = '*';
+    private static final String RIGHT = "R";
+    private static final String DOWN = "D";
+    private static final String LEFT = "L";
+    private static final String UP = "U";
 
-    private static final char[][] LABYRINTH = readLabyrinth();
-    private static final Set<Cell> BLOCKED_CELLS = readBlockedCells();
-    private static final Cell EXIT_CELL = findExitCell();
+    private static final char[][] LABYRINTH;
+    private static final Set<Cell> BLOCKED_CELLS;
+    private static final Cell EXIT_CELL;
+    private static final List<String> PATH;
+    private static final Set<Cell> VISITED;
 
-    private static final List<String> PATH = new LinkedList<>();
-    private static final Set<Cell> VISITED = new HashSet<>();
-
-    private static Set<Cell> readBlockedCells() {
-        Set<Cell> cells = new HashSet<>();
-
-        for (int row = 0; row < LABYRINTH.length; row++) {
-            for (int col = 0; col < LABYRINTH[row].length; col++) {
-                if (LABYRINTH[row][col] == BLOCKED_SYMBOL) {
-                    cells.add(new Cell(row, col));
-                }
-            }
-        }
-
-        return cells;
+    static {
+        LABYRINTH = readLabyrinth();
+        BLOCKED_CELLS = readBlockedCells();
+        EXIT_CELL = findExitCell();
+        PATH = new LinkedList<>();
+        VISITED = new HashSet<>();
     }
 
     public static void main(String[] args) {
@@ -47,10 +44,12 @@ public class Pr07PathsInLabyrinth {
         } else if (!VISITED.contains(current) && !BLOCKED_CELLS.contains(current)) {
 
             VISITED.add(current);
-            findPath(getCell(current.row, current.col + 1), "R");
-            findPath(getCell(current.row + 1, current.col), "D");
-            findPath(getCell(current.row, current.col - 1), "L");
-            findPath(getCell(current.row - 1, current.col), "U");
+
+            findPath(getCell(current.row, current.col + 1), RIGHT);
+            findPath(getCell(current.row + 1, current.col), DOWN);
+            findPath(getCell(current.row, current.col - 1), LEFT);
+            findPath(getCell(current.row - 1, current.col), UP);
+
             VISITED.remove(current);
         }
 
@@ -63,18 +62,6 @@ public class Pr07PathsInLabyrinth {
         }
 
         return new Cell(row, col);
-    }
-
-    private static Cell findExitCell() {
-        for (int row = 0; row < LABYRINTH.length; row++) {
-            for (int col = 0; col < LABYRINTH[row].length; col++) {
-                if (LABYRINTH[row][col] == EXIT_SYMBOL) {
-                    return new Cell(row, col);
-                }
-            }
-        }
-
-        return null;
     }
 
     private static char[][] readLabyrinth() {
@@ -96,7 +83,34 @@ public class Pr07PathsInLabyrinth {
         return new char[][]{};
     }
 
+    private static Set<Cell> readBlockedCells() {
+        Set<Cell> cells = new HashSet<>();
+
+        for (int row = 0; row < LABYRINTH.length; row++) {
+            for (int col = 0; col < LABYRINTH[row].length; col++) {
+                if (LABYRINTH[row][col] == BLOCKED_SYMBOL) {
+                    cells.add(new Cell(row, col));
+                }
+            }
+        }
+
+        return cells;
+    }
+
+    private static Cell findExitCell() {
+        for (int row = 0; row < LABYRINTH.length; row++) {
+            for (int col = 0; col < LABYRINTH[row].length; col++) {
+                if (LABYRINTH[row][col] == EXIT_SYMBOL) {
+                    return new Cell(row, col);
+                }
+            }
+        }
+
+        return null;
+    }
+
     private static class Cell implements Comparable<Cell> {
+
         final int row;
         final int col;
 
@@ -123,7 +137,7 @@ public class Pr07PathsInLabyrinth {
                 return false;
             }
             Cell cell = (Cell) o;
-            return row == cell.row && col == cell.col;
+            return this.compareTo(cell) == 0;
         }
 
         @Override
