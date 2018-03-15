@@ -123,13 +123,11 @@ public class Pr07PathsInLabyrinth {
                 return false;
             }
             Cell cell = (Cell) o;
-            return row == cell.row &&
-                    col == cell.col;
+            return row == cell.row && col == cell.col;
         }
 
         @Override
         public int hashCode() {
-
             return Objects.hash(row, col);
         }
     }
