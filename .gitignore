@@ -1,0 +1,49 @@
+#.gitignore
+
+#**/Demos/
+#*.pptx
+#*.zip
+*.7z
+*.rar
+
+### IntelliJ IDEA ###
+**/out/
+**/.idea/*
+!**/.idea/misc.xml
+!**/.idea/modules.xml
+*.iws
+#*.iml
+*.ipr
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
