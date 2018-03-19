@@ -4,18 +4,25 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Pr05Words {
 
-    private static int count = 0;
+    private static long count = 0L;
 
     public static void main(String[] args) throws IOException {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         char[] chars = reader.readLine().trim().toCharArray();
-        Arrays.sort(chars);
-        permuteRep(chars, 0, chars.length - 1);
+
+        if (hasOnlyUniqueCharacters(chars)) {
+            count = factorial(chars.length);
+        } else {
+            Arrays.sort(chars);
+            permuteRep(chars, 0, chars.length - 1);
+        }
 
         System.out.println(count);
     }
@@ -53,5 +60,23 @@ public class Pr05Words {
             System.arraycopy(chars, left + 1, chars, left, end - left);
             chars[end] = firstElement;
         }
+    }
+
+    private static boolean hasOnlyUniqueCharacters(char[] characters) {
+        Set<Character> unique = new HashSet<>();
+
+        for (char character : characters) {
+            unique.add(character);
+        }
+
+        return characters.length == unique.size();
+    }
+
+    private static long factorial(int number) {
+        long fact = 1L;
+        for (int i = 2; i <= number; i++) {
+            fact *= i;
+        }
+        return fact;
     }
 }
