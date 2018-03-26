@@ -2,7 +2,7 @@ package _02_combinatorial_algorithms.lab;
 
 import java.util.Scanner;
 
-public class Pr07NChooseKCount {
+public class Pr07NChooseKCountRecursive {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
