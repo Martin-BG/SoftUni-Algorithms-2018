@@ -21,14 +21,7 @@ public class Pr01SumOfCoinsTests {
         expectedResult.put(2, 1);
         expectedResult.put(1, 1);
 
-        for (Map.Entry<Integer, Integer> integerIntegerEntry : expectedResult.entrySet()) {
-            Integer key = integerIntegerEntry.getKey();
-            Integer value = integerIntegerEntry.getValue();
-
-            boolean b = selectedCoins.containsKey(key);
-            Assert.assertTrue(b);
-            Assert.assertEquals(value, selectedCoins.get(key));
-        }
+        resultChecker(selectedCoins, expectedResult);
     }
 
     @Test
@@ -41,14 +34,7 @@ public class Pr01SumOfCoinsTests {
         Map<Integer, Integer> expectedResult = new LinkedHashMap<>();
         expectedResult.put(1, 42);
 
-        for (Map.Entry<Integer, Integer> integerIntegerEntry : expectedResult.entrySet()) {
-            Integer key = integerIntegerEntry.getKey();
-            Integer value = integerIntegerEntry.getValue();
-
-            boolean b = selectedCoins.containsKey(key);
-            Assert.assertTrue(b);
-            Assert.assertEquals(value, selectedCoins.get(key));
-        }
+        resultChecker(selectedCoins, expectedResult);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -71,14 +57,7 @@ public class Pr01SumOfCoinsTests {
         expectedResult.put(2, 1);
         expectedResult.put(1, 1);
 
-        for (Map.Entry<Integer, Integer> integerIntegerEntry : expectedResult.entrySet()) {
-            Integer key = integerIntegerEntry.getKey();
-            Integer value = integerIntegerEntry.getValue();
-
-            boolean b = selectedCoins.containsKey(key);
-            Assert.assertTrue(b);
-            Assert.assertEquals(value, selectedCoins.get(key));
-        }
+        resultChecker(selectedCoins, expectedResult);
     }
 
     @Test
@@ -93,14 +72,7 @@ public class Pr01SumOfCoinsTests {
         expectedResult.put(2, 1);
         expectedResult.put(1, 1);
 
-        for (Map.Entry<Integer, Integer> integerIntegerEntry : expectedResult.entrySet()) {
-            Integer key = integerIntegerEntry.getKey();
-            Integer value = integerIntegerEntry.getValue();
-
-            boolean b = selectedCoins.containsKey(key);
-            Assert.assertTrue(b);
-            Assert.assertEquals(value, selectedCoins.get(key));
-        }
+        resultChecker(selectedCoins, expectedResult);
     }
 
     @Test
@@ -114,14 +86,7 @@ public class Pr01SumOfCoinsTests {
         expectedResult.put(10, 2);
         expectedResult.put(1, 7);
 
-        for (Map.Entry<Integer, Integer> integerIntegerEntry : expectedResult.entrySet()) {
-            Integer key = integerIntegerEntry.getKey();
-            Integer value = integerIntegerEntry.getValue();
-
-            boolean b = selectedCoins.containsKey(key);
-            Assert.assertTrue(b);
-            Assert.assertEquals(value, selectedCoins.get(key));
-        }
+        resultChecker(selectedCoins, expectedResult);
     }
 
     @Test
@@ -135,14 +100,7 @@ public class Pr01SumOfCoinsTests {
         expectedResult.put(4, 308);
         expectedResult.put(2, 1);
 
-        for (Map.Entry<Integer, Integer> integerIntegerEntry : expectedResult.entrySet()) {
-            Integer key = integerIntegerEntry.getKey();
-            Integer value = integerIntegerEntry.getValue();
-
-            boolean b = selectedCoins.containsKey(key);
-            Assert.assertTrue(b);
-            Assert.assertEquals(value, selectedCoins.get(key));
-        }
+        resultChecker(selectedCoins, expectedResult);
     }
 
     @Test
@@ -158,6 +116,10 @@ public class Pr01SumOfCoinsTests {
         expectedResult.put(30, 1);
         expectedResult.put(4, 1);
 
+        resultChecker(selectedCoins, expectedResult);
+    }
+
+    private void resultChecker(Map<Integer, Integer> selectedCoins, Map<Integer, Integer> expectedResult) {
         for (Map.Entry<Integer, Integer> integerIntegerEntry : expectedResult.entrySet()) {
             Integer key = integerIntegerEntry.getKey();
             Integer value = integerIntegerEntry.getValue();
