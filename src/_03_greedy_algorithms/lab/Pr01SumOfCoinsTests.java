@@ -9,7 +9,7 @@ import java.util.Map;
 public class Pr01SumOfCoinsTests {
 
     @Test
-    public void TestWithProvidedExample() {
+    public void testWithProvidedExample() {
         int[] coins = new int[]{1, 2, 5, 10, 20, 50};
         int targetSum = 923;
 
@@ -25,7 +25,7 @@ public class Pr01SumOfCoinsTests {
     }
 
     @Test
-    public void TestWithOneAvailableCoin() {
+    public void testWithOneAvailableCoin() {
         int[] coins = new int[]{1};
         int targetSum = 42;
 
@@ -38,7 +38,7 @@ public class Pr01SumOfCoinsTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void TestWithUnreachableSum() {
+    public void testWithUnreachableSum() {
         int[] coins = new int[]{3, 7};
         int targetSum = 11;
 
@@ -46,7 +46,7 @@ public class Pr01SumOfCoinsTests {
     }
 
     @Test
-    public void TestWithSeveralCoins() {
+    public void testWithSeveralCoins() {
         int[] coins = new int[]{1, 2, 5};
         int targetSum = 78;
 
@@ -61,7 +61,7 @@ public class Pr01SumOfCoinsTests {
     }
 
     @Test
-    public void TestWithLargeSum() {
+    public void testWithLargeSum() {
         int[] coins = new int[]{1, 2, 5};
         int targetSum = 2031154123;
 
@@ -76,7 +76,7 @@ public class Pr01SumOfCoinsTests {
     }
 
     @Test
-    public void TestWithNonOptimalParameters() {
+    public void testWithNonOptimalParameters() {
         int[] coins = new int[]{1, 9, 10};
         int targetSum = 27;
 
@@ -90,7 +90,7 @@ public class Pr01SumOfCoinsTests {
     }
 
     @Test
-    public void TestWithSmallCoins() {
+    public void testWithSmallCoins() {
         int[] coins = new int[]{1, 2, 3, 4};
         int targetSum = 1234;
 
@@ -104,7 +104,7 @@ public class Pr01SumOfCoinsTests {
     }
 
     @Test
-    public void TestWithOneCoinNeededOfEachValue() {
+    public void testWithOneCoinNeededOfEachValue() {
         int[] coins = new int[]{1000, 200, 30, 4};
         int targetSum = 1234;
 
