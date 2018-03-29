@@ -4,9 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Pr02SecCover {
@@ -50,12 +49,54 @@ public class Pr02SecCover {
         }
     }
 
-    static List<int[]> chooseSets(List<int[]> sets, int[] universe) {
+    static List<int[]> chooseSets(final List<int[]> sets, final int[] universe) {
+        List<int[]> chosenSets = new ArrayList<>();
 
-        // TODO
-        return sets;
-/*        List<int[]> chosenSets = new ArrayList<>();
+        Set<Integer> universeSet = Arrays
+                .stream(universe)
+                .boxed()
+                .collect(Collectors.toCollection(HashSet::new));
 
-        return chosenSets;*/
+        Set<Integer> usedSets = new HashSet<>();
+
+        while (!universeSet.isEmpty()) {
+            int bestIndex = -1;
+            int matches = 0;
+
+            for (int index = 0; index < sets.size(); index++) {
+                if (usedSets.contains(index)) {
+                    continue;
+
+                }
+
+                int currentMatches = 0;
+                for (int number : sets.get(index)) {
+                    if (universeSet.contains(number)) {
+                        currentMatches++;
+                    }
+                }
+
+                if (currentMatches > matches) {
+                    matches = currentMatches;
+                    bestIndex = index;
+                }
+            }
+
+            if (bestIndex >= 0) {
+                usedSets.add(bestIndex);
+
+                int[] set = sets.get(bestIndex);
+
+                chosenSets.add(set);
+
+                for (int number : set) {
+                    universeSet.remove(number);
+                }
+            } else {
+                throw new IllegalArgumentException();
+            }
+        }
+
+        return chosenSets;
     }
 }
