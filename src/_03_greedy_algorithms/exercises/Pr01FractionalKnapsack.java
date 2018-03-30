@@ -15,13 +15,13 @@ public class Pr01FractionalKnapsack {
     private static final Charset ENCODING = Charset.forName("UTF-8");
     private static final String PARAMETERS_SEPARATOR = ":";
     private static final String ITEMS_SEPARATOR = " -> ";
-    private static final String TAKE_ALL = "Take 100%% of item with price %.2f and weight %.2f%n";
-    private static final String TAKE_FRACTION = "Take %.2f%% of item with price %.2f and weight %.2f%n";
+    private static final String TAKEN = "Take %s%% of item with price %.2f and weight %.2f%n";
     private static final String TOTAL_PRICE = "Total price: %.2f";
+    private static final String FRACTION_FORMAT = "%.2f";
 
     public static void main(String[] args) {
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in, ENCODING))) {
+        try (final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in, ENCODING))) {
 
             double capacity = Double.parseDouble(reader.readLine().split(PARAMETERS_SEPARATOR)[1].trim());
             int itemsCount = Integer.parseInt(reader.readLine().split(PARAMETERS_SEPARATOR)[1].trim());
@@ -38,7 +38,7 @@ public class Pr01FractionalKnapsack {
             double totalValue = 0d;
             double availableCapacity = capacity;
 
-            StringBuilder sb = new StringBuilder();
+            final StringBuilder sb = new StringBuilder();
 
             for (double[] item : items) {
                 double itemQuantity = item[QUANTITY];
@@ -46,11 +46,11 @@ public class Pr01FractionalKnapsack {
                 double percentageTaken = Math.min(itemQuantity, availableCapacity) / itemQuantity;
                 double valueTaken = percentageTaken * item[PRICE];
 
-                if (percentageTaken < 1d) {
-                    sb.append(String.format(TAKE_FRACTION, percentageTaken * 100d, itemPrice, itemQuantity));
-                } else {
-                    sb.append(String.format(TAKE_ALL, itemPrice, itemQuantity));
-                }
+                String percentage = (percentageTaken < 1d) ?
+                        String.format(FRACTION_FORMAT, percentageTaken * 100d) :
+                        Integer.toString(100);
+
+                sb.append(String.format(TAKEN, percentage, itemPrice, itemQuantity));
 
                 totalValue += valueTaken;
                 availableCapacity -= itemQuantity * percentageTaken;
