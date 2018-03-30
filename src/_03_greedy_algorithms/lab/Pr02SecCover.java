@@ -13,6 +13,7 @@ public class Pr02SecCover {
     private static final Charset ENCODING = Charset.forName("UTF-8");
     private static final String SEPARATOR = ", ";
     private static final String SETS_TAKEN = "Sets to take (%d):%n";
+    private static final String ERROR = "No solution could be found";
 
     public static void main(String[] args) {
 
@@ -44,6 +45,8 @@ public class Pr02SecCover {
                             .replaceAll("\\[", "{ ")
                             .replaceAll("]", " }")));
 
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR);
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
@@ -61,12 +64,11 @@ public class Pr02SecCover {
 
         while (!universeSet.isEmpty()) {
             int bestIndex = -1;
-            int matches = 0;
+            int bestMatches = 0;
 
             for (int index = 0; index < sets.size(); index++) {
                 if (usedSets.contains(index)) {
                     continue;
-
                 }
 
                 int currentMatches = 0;
@@ -76,8 +78,8 @@ public class Pr02SecCover {
                     }
                 }
 
-                if (currentMatches > matches) {
-                    matches = currentMatches;
+                if (currentMatches > bestMatches) {
+                    bestMatches = currentMatches;
                     bestIndex = index;
                 }
             }
