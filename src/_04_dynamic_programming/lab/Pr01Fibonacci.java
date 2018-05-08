@@ -41,16 +41,17 @@ public class Pr01Fibonacci {
 
     private static long findFibonacciRecursiveWithMemoization(final long[] memo, final int n) {
         if (n <= 0) {
-            return 0;
+            return 0L;
         } else if (n <= 2) {
-            memo[n] = 1;
+            memo[n] = 1L;
         }
 
         if (memo[n] > 0) {
             return memo[n];
         }
 
-        long current = findFibonacciRecursiveWithMemoization(memo, n - 1) + findFibonacciRecursiveWithMemoization(memo, n - 2);
+        long current = findFibonacciRecursiveWithMemoization(memo, n - 1) +
+                findFibonacciRecursiveWithMemoization(memo, n - 2);
 
         memo[n] = current;
 
