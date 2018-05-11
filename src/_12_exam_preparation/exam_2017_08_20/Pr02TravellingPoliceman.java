@@ -1,4 +1,4 @@
-package _12_exam_preparation;
+package _12_exam_preparation.exam_2017_08_20;
 
 import java.io.BufferedReader;
 import java.io.IOException;
