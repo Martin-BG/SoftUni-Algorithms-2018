@@ -14,45 +14,29 @@ public class Pr01AbaspaBasapa {
         final char[] first = reader.readLine().toCharArray();
         final char[] second = reader.readLine().toCharArray();
 
+        int maxLength = 0;
+        int startIndex = 0;
+
         final int[][] dp = new int[second.length + 1][first.length + 1];
 
-        for (int row = 1; row <= second.length; row++) {
-            final char ch1 = second[row - 1];
-            for (int col = 1; col <= first.length; col++) {
-                final char ch2 = first[col - 1];
+        for (int col = 1; col <= first.length; col++) {
+            final char ch1 = first[col - 1];
+            for (int row = 1; row <= second.length; row++) {
+                final char ch2 = second[row - 1];
                 if (ch1 == ch2) {
-                    dp[row][col] = dp[row - 1][col - 1] + 1;
-                }
-            }
-        }
+                    int length = dp[row - 1][col - 1] + 1;
+                    dp[row][col] = length;
 
-        int startCol = 0;
-        int bestLength = 0;
-
-        for (int row = 1; row <= second.length; row++) {
-            for (int col = 1; col <= first.length; col++) {
-                if (dp[row][col] == 1) {
-                    int nextRow = row + 1;
-                    int nextCol = col + 1;
-                    int currentLength = 1;
-                    while (nextRow <= second.length &&
-                            nextCol <= first.length &&
-                            dp[nextRow][nextCol] == currentLength + 1) {
-                        nextRow++;
-                        nextCol++;
-                        currentLength++;
-                    }
-
-                    if (currentLength > bestLength) {
-                        bestLength = currentLength;
-                        startCol = col;
+                    if (length > maxLength) {
+                        maxLength = length;
+                        startIndex = col - length;
                     }
                 }
             }
         }
 
-        if (bestLength > 0) {
-            System.out.print(String.valueOf(first).substring(startCol - 1, startCol + bestLength - 1));
+        if (maxLength > 0) {
+            System.out.print(String.valueOf(first).substring(startIndex, startIndex + maxLength));
         }
     }
 }
