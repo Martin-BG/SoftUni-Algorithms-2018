@@ -1,19 +1,18 @@
-# SoftUni-Algorithms-2018
-**Algorithms course at SoftUni, 2018**</br>
-https://softuni.bg/trainings/1907/algorithms-march-2018
+# Algorithms
 
-Recursion, Sorting and Searching Algorithms</br>
-Combinatorial Algorithms</br>
-Greedy Algorithms</br>
-Dynamic Programming - Part I</br>
-Dynamic Programming - Part II</br>
-Graphs and Graph Algorithms</br>
-Advanced Graph Algorithms - Part I</br>
-Advanced Graph Algorithms - Part II</br>
-Problem Solving Methodology</br>
-Solving Practical Problems - Part I</br>
-Solving Practical Problems - Part II</br>
-Exam Preparation</br>
-Exam Preparation</br>
-Exam</br>
-Exam Retake</br>
+[**Algorithms** course at SoftUni with Java - Mar 2018](https://softuni.bg/trainings/1907/algorithms-march-2018)
+
+1. Recursion, Sorting and Searching Algorithms
+1. Combinatorial Algorithms
+1. Greedy Algorithms
+1. Dynamic Programming - Part I
+1. Dynamic Programming - Part II
+1. Graphs and Graph Algorithms
+1. Advanced Graph Algorithms - Part I
+1. Advanced Graph Algorithms - Part II
+1. Problem Solving Methodology
+1. Solving Practical Problems - Part I
+1. Solving Practical Problems - Part II
+1. Exam Preparation
+1. Exam Preparation
+1. Exam
